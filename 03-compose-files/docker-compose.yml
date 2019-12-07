@@ -8,22 +8,25 @@ services:
      restart: always # If the container exits, start it again
      environment: # Pass the following environment variables to the container
        MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+       MYSQL_DATABASE: wpdb
+       MYSQL_USER: wpuser
+       MYSQL_PASSWORD: wppwpwpw
 
    wordpress: # Name of the service
      depends_on: # Tells Docker that this service will need the service "db" to run before it can start
        - db
      image: wordpress:latest
+     volumes:
+      - wordpress_data:/var/www/html
      ports:
        - "8000:80" # Forward port 8000 on the server to port 80 of the container
      restart: always
      environment: # Pass environment variables - tell container where to connect to the database
        WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
+       WORDPRESS_DB_USER: wpuser
+       WORDPRESS_DB_PASSWORD: wppwpwpw
+       WORDPRESS_DB_NAME: wpdb
+  
 volumes:
     db_data: {} # Tell Docker to create a persistent volume. If we didn't do this, on every restart, all WordPress data would be discarded.
-    
+    wordpress_data: {}
