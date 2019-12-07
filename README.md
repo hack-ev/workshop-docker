@@ -54,7 +54,7 @@
             * Create some HTML file
             * Create Dockerfile
                 ```
-                    FROM python:3-alpine
+                    FROM python:3-slim
                     WORKDIR /usr/src/app
                     COPY . .
 
@@ -65,7 +65,7 @@
             * Note: "EXPOSE" command tells Docker daemon to "expose" container ports on Docker server ports
                 * Since local computer is Docker server, this allows us to access containers on localhost
             
-            * `docker run -p 8080:8000 -it <id>`
+            * Run `docker run -p 8080:8000 -it <id>`
 
             * Browse to [https://localhost:8080]
             * Note: Host port is different from container port
@@ -96,6 +96,7 @@
     * Docker creates the containers required in the stack. It also creates the volumes required, connects the specified network services, and respects the dependencies between multiple containers in a stack.
 
 ### BREAK, 20 minutes
+
 * Explore time
     * Have a project you want to make into a container? Let's try it
     * Want to try building your own docker-compose file?
