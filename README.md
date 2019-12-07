@@ -32,7 +32,7 @@
         * Exercise: Write a Dockerfile based on Alpine
             * Create new folder
             * Create text file
-            * Create Dockerfile
+            * Create "Dockerfile"
                 ```
                     FROM alpine
                     ADD test.txt test.txt
@@ -47,37 +47,37 @@
             * Run `docker tag <id> <username>/test-01` -> Tag it with a human readable name
             * Run `docker push <username>/test-01` -> Push it to DockerHub
 
-    * Now let's make something useful
-        * Exercise: Create a webserver
-            * Create a new folder
-            * `cd` to it
-            * Create some HTML file
-            * Create Dockerfile
-                ```
-                    FROM python:3-slim
-                    WORKDIR /usr/src/app
-                    COPY . .
+### BREAK 15 Minutes
 
-                    EXPOSE 8000
+* Now let's make something useful
+    * Exercise: Create a webserver
+        * Create a new folder
+        * `cd` to it
+        * Create `index.html` with whatever HTML content you like
+        * Create Dockerfile
+            ```
+                FROM python:3-slim
+                WORKDIR /usr/src/app
+                COPY . .
 
-                    CMD [ "python", "-m", "http.server" ]
-                ```
-            * Note: "EXPOSE" command tells Docker daemon to "expose" container ports on Docker server ports
-                * Since local computer is Docker server, this allows us to access containers on localhost
-            
-            * Run `docker run -p 8080:8000 -it <id>`
+                EXPOSE 8000
 
-            * Browse to [https://localhost:8080]
-            * Note: Host port is different from container port
-            
-### BREAK, 15 minutes
+                CMD [ "python", "-m", "http.server" ]
+            ```
+        * Note: "EXPOSE" command tells Docker that this application offers service on the following ports
+            * Since local computer is Docker server, this allows us to access containers on localhost
+        
+        * Run `docker run -p 8080:8000 -it <id>`
+
+        * Browse to [https://localhost:8080]
+        * Note: Host port is different from container port
 
 ## Stacks & Compose Files
 * How to specify a stack -> Docker compose file
 
 * Exercise: Create a WordPress installation running on MySQL
     * Copy the Docker compose file from folder "03-compose-files"
-    * Run `docker compose up -d`
+    * Run `docker-compose up -d`
 
 * What are stacks? -> multiple containers to run, with:
     * image to use
