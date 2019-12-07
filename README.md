@@ -89,9 +89,7 @@
 * Exercise: Change the compose file:
     * Use different versions of the images -> check Docker Hub for "tags" you can ask Docker for
         * Note: Only differences in images between versions are downloaded
-    * Forward host port 8443 to container port 443
-        * Check if it worked -> browse to localhost:8443 and see what pops up. SSL Error = OK
-
+        
 * What happens "under the hood"?
     * Docker creates the containers required in the stack. It also creates the volumes required, connects the specified network services, and respects the dependencies between multiple containers in a stack.
 
