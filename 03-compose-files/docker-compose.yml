@@ -1,0 +1,29 @@
+version: '3.3' # Version of the Docker compose syntax that is being used
+
+services:
+   db: # Name of the service
+     image: mysql:5.7 # Docker image to run
+     volumes:
+       - db_data:/var/lib/mysql # Connect volume "db_data" to folder "/var/lib/mysql" inside the container
+     restart: always # If the container exits, start it again
+     environment: # Pass the following environment variables to the container
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+   wordpress: # Name of the service
+     depends_on: # Tells Docker that this service will need the service "db" to run before it can start
+       - db
+     image: wordpress:latest
+     ports:
+       - "8000:80" # Forward port 8000 on the server to port 80 of the container
+     restart: always
+     environment: # Pass environment variables - tell container where to connect to the database
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_NAME: wordpress
+volumes:
+    db_data: {} # Tell Docker to create a persistent volume. If we didn't do this, on every restart, all WordPress data would be discarded.
+    
