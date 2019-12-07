@@ -35,7 +35,7 @@
             * Create Dockerfile
                 ```
                     FROM alpine
-                    ADD test.txt
+                    ADD test.txt test.txt
                 ```
             * Run `docker build .` -> Builds current directory into image, shows you ID
             * What just happened?
@@ -89,7 +89,7 @@
 * Exercise: Change the compose file:
     * Use different versions of the images -> check Docker Hub for "tags" you can ask Docker for
         * Note: Only differences in images between versions are downloaded
-        
+
 * What happens "under the hood"?
     * Docker creates the containers required in the stack. It also creates the volumes required, connects the specified network services, and respects the dependencies between multiple containers in a stack.
 
